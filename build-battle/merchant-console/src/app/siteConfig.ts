@@ -1,15 +1,12 @@
 export const siteConfig = {
-  name: "Dashboard",
-  url: "https://dashboard.tremor.so",
-  description: "The only dashboard you will ever need.",
+  name: "Northwind Payments",
+  url: "https://northwind.example",
+  description: "Merchant console for support and operations.",
   baseLinks: {
-    home: "/",
     overview: "/overview",
-    details: "/details",
-    settings: "/settings",
-  },
-  externalLink: {
-    blocks: "https://blocks.tremor.so/templates#dashboard",
+    payments: "/payments",
+    disputes: "/disputes",
+    payouts: "/payouts",
   },
 }
 

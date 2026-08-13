@@ -13,9 +13,9 @@ export const focusInput = [
   // base
   "focus:ring-2",
   // ring color
-  "focus:ring-indigo-200 focus:dark:ring-indigo-700/30",
+  "focus:ring-blue-200 focus:dark:ring-blue-700/30",
   // border color
-  "focus:border-indigo-500 focus:dark:border-indigo-700",
+  "focus:border-blue-500 focus:dark:border-blue-700",
 ]
 
 // Tremor Raw focusRing [v0.0.1]
@@ -24,7 +24,7 @@ export const focusRing = [
   // base
   "outline outline-offset-2 outline-0 focus-visible:outline-2",
   // outline color
-  "outline-indigo-500 dark:outline-indigo-500",
+  "outline-blue-500 dark:outline-blue-500",
 ]
 
 // Tremor Raw hasErrorInput [v0.0.1]
@@ -38,40 +38,61 @@ export const hasErrorInput = [
   "ring-red-200 dark:ring-red-700/30",
 ]
 
-// Number formatter function
-
-export const usNumberformatter = (number: number, decimals = 0) =>
-  Intl.NumberFormat("us", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })
-    .format(Number(number))
-    .toString()
-
-export const percentageFormatter = (number: number, decimals = 1) => {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "percent",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(number)
-  const symbol = number > 0 && number !== Infinity ? "+" : ""
-
-  return `${symbol}${formattedNumber}`
+interface CurrencyParams {
+  number: number
+  maxFractionDigits?: number
+  currency?: string
 }
 
-export const millionFormatter = (number: number, decimals = 1) => {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    style: "decimal",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(number)
-  return `${formattedNumber}M`
+interface PercentageParams {
+  number: number
+  decimals?: number
 }
-export const formatters: { [key: string]: any } = {
-  currency: (number: number, currency: string = "USD") =>
-    new Intl.NumberFormat("en-US", {
+
+interface MillionParams {
+  number: number
+  decimals?: number
+}
+
+type FormatterFunctions = {
+  currency: (params: CurrencyParams) => string
+  unit: (number: number) => string
+  percentage: (params: PercentageParams) => string
+  million: (params: MillionParams) => string
+}
+
+export const formatters: FormatterFunctions = {
+  currency: ({
+    number,
+    maxFractionDigits = 2,
+    currency = "USD",
+  }: CurrencyParams): string => {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: currency,
-    }).format(number),
-  unit: (number: number) => `${usNumberformatter(number)}`,
+      currency,
+      maximumFractionDigits: maxFractionDigits,
+    }).format(number)
+  },
+
+  unit: (number: number): string => {
+    return new Intl.NumberFormat("en-US", {
+      style: "decimal",
+    }).format(number)
+  },
+
+  percentage: ({ number, decimals = 1 }: PercentageParams): string => {
+    return new Intl.NumberFormat("en-US", {
+      style: "percent",
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(number)
+  },
+
+  million: ({ number, decimals = 1 }: MillionParams): string => {
+    return `${new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(number)}M`
+  },
 }

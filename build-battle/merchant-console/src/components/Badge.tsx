@@ -1,4 +1,4 @@
-// Tremor Raw Badge [v0.0.0]
+// Tremor Badge [v0.0.1]
 
 import React from "react"
 import { tv, type VariantProps } from "tailwind-variants"
@@ -7,28 +7,28 @@ import { cx } from "@/lib/utils"
 
 const badgeVariants = tv({
   base: cx(
-    "inline-flex items-center gap-x-1 whitespace-nowrap rounded px-1.5 py-0.5 text-xs font-semibold ring-1",
+    "inline-flex items-center gap-x-1 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
   ),
   variants: {
     variant: {
       default: [
-        "bg-indigo-50 text-indigo-800 ring-indigo-500/30",
-        "dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-indigo-400/30",
+        "bg-blue-50 text-blue-900 ring-blue-500/30",
+        "dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30",
       ],
       neutral: [
-        "bg-gray-50 text-gray-700 ring-gray-500/30",
-        "dark:bg-gray-400/10 dark:text-gray-300 dark:ring-gray-400/20",
+        "bg-gray-50 text-gray-900 ring-gray-500/30",
+        "dark:bg-gray-400/10 dark:text-gray-400 dark:ring-gray-400/20",
       ],
       success: [
-        "bg-emerald-50 text-emerald-800 ring-emerald-600/30",
+        "bg-emerald-50 text-emerald-900 ring-emerald-600/30",
         "dark:bg-emerald-400/10 dark:text-emerald-400 dark:ring-emerald-400/20",
       ],
       error: [
-        "bg-red-50 text-red-800 ring-red-600/20",
+        "bg-red-50 text-red-900 ring-red-600/20",
         "dark:bg-red-400/10 dark:text-red-400 dark:ring-red-400/20",
       ],
       warning: [
-        "bg-yellow-50 text-yellow-800 ring-yellow-600/30",
+        "bg-yellow-50 text-yellow-900 ring-yellow-600/30",
         "dark:bg-yellow-400/10 dark:text-yellow-500 dark:ring-yellow-400/20",
       ],
     },
@@ -48,6 +48,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={forwardedRef}
         className={cx(badgeVariants({ variant }), className)}
+        tremor-id="tremor-raw"
         {...props}
       />
     )

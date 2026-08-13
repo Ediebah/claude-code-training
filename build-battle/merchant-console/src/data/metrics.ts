@@ -1,0 +1,76 @@
+import { lastUtcDays } from "@/lib/dates"
+import { GENERATED_AT } from "./generate"
+import { store } from "./store"
+
+/**
+ * Dashboard metrics. Everything here is reported in USD minor units for the
+ * headline figures, because the overview is an internal ops screen rather
+ * than a merchant statement.
+ */
+
+export interface DailyVolume {
+  date: string
+  captured: number
+  refunded: number
+}
+
+export function dailyVolume(days = 30): DailyVolume[] {
+  const keys = lastUtcDays(days, GENERATED_AT)
+  const buckets = new Map<string, DailyVolume>(
+    keys.map((date) => [date, { date, captured: 0, refunded: 0 }]),
+  )
+
+  for (const payment of store.payments) {
+    // BUG (NWP-1057 planted): buckets by the server's local calendar date
+    // rather than the UTC date the record was stored under.
+    const key = new Date(payment.createdAt).toLocaleDateString("en-CA")
+    const bucket = buckets.get(key)
+    if (!bucket) continue
+
+    if (payment.status === "captured") {
+      // BUG (NWP-1057 planted): float accumulation, then rounded on read.
+      bucket.captured += payment.amount / 100
+    }
+    if (payment.status === "refunded") {
+      bucket.refunded += payment.amount / 100
+    }
+  }
+
+  return keys.map((date) => {
+    const bucket = buckets.get(date)!
+    return {
+      date,
+      captured: Math.round(bucket.captured * 100),
+      refunded: Math.round(bucket.refunded * 100),
+    }
+  })
+}
+
+export function headlineMetrics() {
+  const captured = store.payments.filter((p) => p.status === "captured")
+  const refunded = store.payments.filter((p) => p.status === "refunded")
+
+  // BUG (NWP-1057 planted): refunds added to gross volume instead of subtracted.
+  const grossVolume =
+    captured.reduce((sum, p) => sum + p.amount, 0) +
+    refunded.reduce((sum, p) => sum + p.amount, 0)
+
+  const authorized = store.payments.filter(
+    (p) => p.status !== "failed",
+  ).length
+  const authRate = store.payments.length
+    ? authorized / store.payments.length
+    : 0
+
+  const openDisputes = store.disputes.filter(
+    (d) => d.status === "needs_response" || d.status === "under_review",
+  )
+
+  return {
+    grossVolume,
+    authRate,
+    paymentCount: store.payments.length,
+    openDisputes: openDisputes.length,
+    disputedAmount: openDisputes.reduce((sum, d) => sum + d.amount, 0),
+  }
+}

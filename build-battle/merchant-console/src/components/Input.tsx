@@ -1,7 +1,7 @@
-// Tremor Raw Input [v1.0.3]
+// Tremor Input [v1.0.5]
 
-import { RiEyeFill, RiEyeOffFill, RiSearchLine } from "@remixicon/react"
 import React from "react"
+import { RiEyeFill, RiEyeOffFill, RiSearchLine } from "@remixicon/react"
 import { tv, type VariantProps } from "tailwind-variants"
 
 import { cx, focusInput, focusRing, hasErrorInput } from "@/lib/utils"
@@ -9,7 +9,7 @@ import { cx, focusInput, focusRing, hasErrorInput } from "@/lib/utils"
 const inputStyles = tv({
   base: [
     // base
-    "relative block w-full appearance-none truncate rounded-md border px-2.5 py-1.5 shadow-sm outline-none transition sm:text-sm",
+    "relative block w-full appearance-none rounded-md border px-2.5 py-2 shadow-sm outline-none transition sm:text-sm",
     // border color
     "border-gray-300 dark:border-gray-800",
     // text color
@@ -33,7 +33,7 @@ const inputStyles = tv({
     // invalid (optional)
     // "aria-[invalid=true]:dark:ring-red-400/20 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-200 aria-[invalid=true]:border-red-500 invalid:ring-2 invalid:ring-red-200 invalid:border-red-500"
     // remove search cancel button (optional)
-    "[&::--webkit-search-cancel-button]:hidden [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
+    "[&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
   ],
   variants: {
     hasError: {
@@ -71,7 +71,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const isSearch = type === "search"
 
     return (
-      <div className={cx("relative w-full", className)}>
+      <div className={cx("relative w-full", className)} tremor-id="tremor-raw">
         <input
           ref={forwardedRef}
           type={isPassword ? typeState : type}

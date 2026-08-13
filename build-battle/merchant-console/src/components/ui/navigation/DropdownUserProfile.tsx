@@ -13,13 +13,8 @@ import {
   DropdownMenuSubMenuContent,
   DropdownMenuSubMenuTrigger,
   DropdownMenuTrigger,
-} from "@/components/Dropdown"
-import {
-  RiArrowRightUpLine,
-  RiComputerLine,
-  RiMoonLine,
-  RiSunLine,
-} from "@remixicon/react"
+} from "@/components/DropdownMenu"
+import { ArrowUpRight, Monitor, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import * as React from "react"
 
@@ -45,7 +40,10 @@ export function DropdownUserProfile({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-        <DropdownMenuContent align={align}>
+        <DropdownMenuContent
+          align={align}
+          className="sm:!min-w-[calc(var(--radix-dropdown-menu-trigger-width))]"
+        >
           <DropdownMenuLabel>emma.stone@acme.com</DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuSubMenu>
@@ -62,7 +60,7 @@ export function DropdownUserProfile({
                     value="light"
                     iconType="check"
                   >
-                    <RiSunLine className="size-4 shrink-0" aria-hidden="true" />
+                    <Sun className="size-4 shrink-0" aria-hidden="true" />
                     Light
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem
@@ -70,10 +68,7 @@ export function DropdownUserProfile({
                     value="dark"
                     iconType="check"
                   >
-                    <RiMoonLine
-                      className="size-4 shrink-0"
-                      aria-hidden="true"
-                    />
+                    <Moon className="size-4 shrink-0" aria-hidden="true" />
                     Dark
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem
@@ -81,10 +76,7 @@ export function DropdownUserProfile({
                     value="system"
                     iconType="check"
                   >
-                    <RiComputerLine
-                      className="size-4 shrink-0"
-                      aria-hidden="true"
-                    />
+                    <Monitor className="size-4 shrink-0" aria-hidden="true" />
                     System
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
@@ -95,29 +87,33 @@ export function DropdownUserProfile({
           <DropdownMenuGroup>
             <DropdownMenuItem>
               Changelog
-              <RiArrowRightUpLine
-                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+              <ArrowUpRight
+                className="mb-1 ml-1 size-3 shrink-0 text-gray-500 dark:text-gray-500"
                 aria-hidden="true"
               />
             </DropdownMenuItem>
             <DropdownMenuItem>
               Documentation
-              <RiArrowRightUpLine
-                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+              <ArrowUpRight
+                className="mb-1 ml-1 size-3 shrink-0 text-gray-500"
                 aria-hidden="true"
               />
             </DropdownMenuItem>
             <DropdownMenuItem>
               Join Slack community
-              <RiArrowRightUpLine
-                className="mb-1 ml-1 size-2.5 shrink-0 text-gray-500"
+              <ArrowUpRight
+                className="mb-1 ml-1 size-3 shrink-0 text-gray-500"
                 aria-hidden="true"
               />
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem>
+              <a href="#" className="w-full">
+                Sign out
+              </a>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

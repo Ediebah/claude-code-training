@@ -1,5 +1,6 @@
-// Tremor Raw Select [v0.0.2]
+// Tremor Select [v0.0.3]
 
+import React from "react"
 import * as SelectPrimitives from "@radix-ui/react-select"
 import {
   RiArrowDownSLine,
@@ -7,7 +8,6 @@ import {
   RiCheckLine,
   RiExpandUpDownLine,
 } from "@remixicon/react"
-import React from "react"
 
 import { cx, focusInput, hasErrorInput } from "@/lib/utils"
 
@@ -57,6 +57,7 @@ const SelectTrigger = React.forwardRef<
         hasError ? hasErrorInput : "",
         className,
       )}
+      tremor-id="tremor-raw"
       {...props}
     >
       <span className="truncate">{children}</span>

@@ -1,8 +1,8 @@
-// Tremor Raw Button [v0.1.1]
+// Tremor Button [v0.2.0]
 
+import React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { RiLoader2Fill } from "@remixicon/react"
-import React from "react"
 import { tv, type VariantProps } from "tailwind-variants"
 
 import { cx, focusRing } from "@/lib/utils"
@@ -10,7 +10,7 @@ import { cx, focusRing } from "@/lib/utils"
 const buttonVariants = tv({
   base: [
     // base
-    "relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center text-sm font-medium shadow-sm transition-all duration-100 ease-in-out sm:text-sm",
+    "relative inline-flex items-center justify-center whitespace-nowrap rounded-md border px-3 py-2 text-center text-sm font-medium shadow-sm transition-all duration-100 ease-in-out",
     // disabled
     "disabled:pointer-events-none disabled:shadow-none",
     // focus
@@ -22,14 +22,14 @@ const buttonVariants = tv({
         // border
         "border-transparent",
         // text color
-        "text-white dark:text-gray-900",
+        "text-white dark:text-white",
         // background color
-        "bg-gray-900 dark:bg-gray-50",
+        "bg-blue-500 dark:bg-blue-500",
         // hover color
-        "hover:bg-gray-800 dark:hover:bg-gray-200",
+        "hover:bg-blue-600 dark:hover:bg-blue-600",
         // disabled
-        "disabled:bg-gray-100 disabled:text-gray-400",
-        "disabled:dark:bg-gray-800 disabled:dark:text-gray-600",
+        "disabled:bg-blue-300 disabled:text-white",
+        "disabled:dark:bg-blue-800 disabled:dark:text-blue-400",
       ],
       secondary: [
         // border
@@ -120,6 +120,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={forwardedRef}
         className={cx(buttonVariants({ variant }), className)}
         disabled={disabled || isLoading}
+        tremor-id="tremor-raw"
         {...props}
       >
         {isLoading ? (
