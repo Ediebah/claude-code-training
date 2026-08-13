@@ -8,7 +8,7 @@ export default function OverviewLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="bg-white dark:bg-gray-925">
+    <div>
       <div className="p-4 sm:p-6">
         <MetricsCards />
       </div>
