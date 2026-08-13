@@ -1,26 +1,37 @@
-# Claude Code Workshop
+# Claude Code Training — Repo Rescue
 
-This is a training repository for the Claude Code Workshop. Each `station-*/` folder has its own CLAUDE.md with station-specific rules. Always read the station's CLAUDE.md before starting work in that folder.
+Training repository for the Repo Rescue workshop. Learners take a ticket end to end against the Northwind Payments merchant console, then open a pull request here to be scored.
+
+Context in this repo is layered on purpose, and the layering is part of what the workshop teaches:
+
+| File | Scope | What belongs in it |
+| --- | --- | --- |
+| `CLAUDE.md` (this file) | Every session | What the repo is, where things live, how work is submitted |
+| `build-battle/CLAUDE.md` | The exercise | The ticket, the order of operations, what is preloaded |
+| `build-battle/merchant-console/CLAUDE.md` | The application | Codebase conventions and card rules |
+| `build-battle/merchant-console/.claude/rules/*.md` | Matching files only | Detail that would be noise until you open that kind of file |
+
+Read the narrowest one that applies before you write code.
 
 ## Repository layout
 
-- `station-1/`, `station-2/`, `station-3/` — the three workshop stations
-- `build-battle/` — the graded sales-leaderboard challenge
-- `apps/merchant-console/` — Northwind Payments, the Repo Rescue application
-- `docs/tickets/` — the tickets learners work, written the way they would arrive on a sprint board
+- `docs/tickets/` — the tickets learners work, written as they arrive on a sprint board
+- `docs/epics/` — where plans go before code does, and the template they follow
+- `build-battle/` — the exercise brief, scoring rubric, skills, and subagent
+- `build-battle/merchant-console/` — Northwind Payments, the application itself
+- `.github/` — pull request template and the grading workflow
 
-## General Conventions
+## Conventions
 
-- Write clean, readable code with meaningful variable names
-- Prefer modern JavaScript (ES2020+): const/let, arrow functions, template literals, optional chaining
-- All HTML should be semantic and accessible
-- When generating output files, write them to the station's `output/` directory
-
-## Per-area conventions
-
-- **Stations and Build Battle**: no external build tools. Everything runs as vanilla HTML/CSS/JS, opened directly or served statically.
-- **`apps/merchant-console/`**: TypeScript, Next.js, and Tailwind, with its own CLAUDE.md. Money is integer minor units and timestamps are UTC; both rules are enforced by tests.
+- Plan before you build. `/epic` turns a ticket into a written plan that cites real files; it is scored.
+- Read before you edit. A second implementation of an existing helper is a defect, not a shortcut.
+- Never edit seed data to make a failing case disappear.
+- Nothing in this repository may resemble real payment data. Generated card numbers use the `4242` test BIN.
 
 ## Submissions
 
-Learner work is submitted as a pull request against this repository and scored automatically. Branch names and commit subjects carry the ticket ID, for example `NWP-1042-export-options` and `NWP-1042: add export options`.
+Work is submitted as a pull request against this repository and scored automatically.
+
+- Branch from `main` with the ticket ID: `NWP-1088-issue-cards`
+- Commit subjects carry the ticket ID: `NWP-1088: issue virtual cards`
+- Fill in the pull request template. The grader reads it.

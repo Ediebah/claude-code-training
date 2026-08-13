@@ -21,6 +21,17 @@ Seed data is JSON, loaded into a store module at boot. Route handlers read and w
 - Persistence is tracked separately as NWP-1103. **Do not add a database, an ORM, or migrations.**
 - If you need more seed data, add it to the JSON. Never edit seed data to make a failing case disappear.
 
+## Where the rest of the context lives
+
+This file loads every session, so it stays short. Detail that only matters once you open a particular kind of file lives in `.claude/rules/` and loads when you do:
+
+| Rule | Applies to |
+| --- | --- |
+| `money.md` | `src/lib/`, `src/app/api/`, `src/data/` |
+| `api-routes.md` | `src/app/api/` |
+| `cards.md` | anything card-related |
+| `components.md` | `src/components/`, `src/app/(main)/` |
+
 ## Conventions
 
 These four explain most of the code, and breaking them is how bugs get in here.
