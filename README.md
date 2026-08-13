@@ -64,7 +64,7 @@ It is both where you get the work and where you hand it in.
 |------|-----------|
 | `docs/tickets/` | The tickets you work |
 | `docs/epics/` | Where your plans go, and the template they follow |
-| `build-battle/` | The exercise brief, scoring, and the `/epic` and `/ship-ready` skills |
+| `build-battle/` | The exercise brief, scoring, and the skills and subagent you get |
 | `build-battle/merchant-console/` | Northwind Payments, the application itself |
 | `.github/` | PR template and the grading workflow |
 
@@ -75,14 +75,28 @@ It is both where you get the work and where you hand it in.
 | [NWP-1088](docs/tickets/NWP-1088.md) | Issue virtual cards from the console | **Build Battle**, 40 minutes, graded |
 | [NWP-1042](docs/tickets/NWP-1042.md) | Payments export options | Guided practice, 10–15 minutes |
 | [NWP-1057](docs/tickets/NWP-1057.md) | Merchants say yesterday's totals are wrong | Investigation exercise |
+| [Backlog](docs/tickets/BACKLOG.md) | Referenced but not scheduled | Do not build these |
+
+## What comes preloaded
+
+Run Claude Code from `build-battle/` and you get:
+
+| | What it does |
+|---|---|
+| `/epic` | Turns a ticket into a plan that cites real files. Run it before you build |
+| `/pr` | Writes the pull request description from your branch, the ticket, and the epic |
+| `/ship-ready` | Pre-push check: money math, UTC handling, duplicate logic, unvalidated input |
+| `bug-investigator` | A read-only subagent that diagnoses a bug report and returns a written root-cause analysis. It cannot edit anything, which is the point |
+
+No hooks are preinstalled. Adding one is a good use of your time if you finish early — a `PreToolUse` hook that blocks a push when tests fail is the obvious one.
 
 ## Concepts you will use
 
 | Concept | What It Is | Where You Use It |
 |---------|-----------|-----------------|
 | **CLAUDE.md** | Persistent project context that loads every session | Before you write a line |
-| **Skills** | Reusable slash commands in `.claude/skills/` | `/epic` before you build, `/ship-ready` before you push |
+| **Skills** | Reusable slash commands in `.claude/skills/` | `/epic`, then `/ship-ready`, then `/pr` |
 | **Plan mode** | Claude proposes an approach before it edits | Right after the epic |
-| **Hooks** | Shell commands that fire before or after Claude acts | Blocking a push that fails the tests |
-| **Sub-Agents** | Independent Claude instances for delegated work | Investigating NWP-1057 read-only |
+| **Sub-Agents** | Independent Claude instances with their own context and permissions | `bug-investigator` on NWP-1057 |
+| **Hooks** | Shell commands that fire before or after Claude acts | Yours to add |
 | **MCP Connectors** | Connect Claude to external tools | Driving the browser to verify your work |

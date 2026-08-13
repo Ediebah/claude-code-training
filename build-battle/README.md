@@ -38,9 +38,21 @@ Do it in this order. The first two steps take five minutes and they are why the 
 2. **Write the epic.** `/epic docs/tickets/NWP-1088.md` — Claude reads the actual codebase, asks you what is ambiguous, and writes a plan to `docs/epics/`. Review it and fix what is wrong.
 3. **Build with it loaded.** `@docs/epics/NWP-1088-issue-cards.md`, then plan mode, then go.
 4. **Check yourself.** `/ship-ready`
-5. **Ship it.** Commit, push, open the PR.
+5. **Write the PR.** `/pr`
+6. **Ship it.** Commit, push, open the pull request.
 
 Skipping step 2 is the most common way to lose this. It is also worth 10% of your score on its own.
+
+## What you have to work with
+
+| | What it does |
+|---|---|
+| `/epic` | Turns the ticket into a plan that cites real files |
+| `/pr` | Writes the pull request description from your branch, the ticket, and the epic |
+| `/ship-ready` | Pre-push check: money math, UTC handling, duplicate logic, unvalidated input |
+| `bug-investigator` | A read-only subagent. Hand it a bug report and it returns a root-cause analysis with file paths. It cannot edit anything, which is exactly why you can trust the report |
+
+Try the subagent on [NWP-1057](../docs/tickets/NWP-1057.md) if you finish early. Nothing in this repository stops you from adding your own skills, subagents, or hooks either — a hook that blocks a push when tests fail is a good ninety seconds of work.
 
 ## How you are scored
 

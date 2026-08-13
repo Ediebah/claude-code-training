@@ -16,7 +16,14 @@ Taking ticket NWP-1088 end to end in a codebase you did not write, in 40 minutes
 2. `/epic docs/tickets/NWP-1088.md` — build the context, review what it wrote
 3. `@docs/epics/NWP-1088-issue-cards.md` — load the plan, then plan mode, then build
 4. `/ship-ready` — check yourself
-5. Commit, push, open the PR
+5. `/pr` — write the description
+6. Commit, push, open the pull request
+
+## What is preloaded
+
+- Skills: `/epic`, `/pr`, `/ship-ready`
+- Subagent: `bug-investigator`, read-only, for diagnosing a report before anyone edits code
+- No hooks. Add your own if you want one.
 
 ## Workflow rules
 
