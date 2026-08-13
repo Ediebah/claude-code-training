@@ -1,0 +1,14 @@
+Northwind Payments Merchant Console
+Copyright 2026 Tenex
+
+This product includes software developed by Tremor Labs, Inc.
+(https://github.com/tremorlabs/template-dashboard-oss), licensed under the
+Apache License, Version 2.0.
+
+Changes made by Tenex:
+  - Rebranded the dashboard as a fictional payments merchant console.
+  - Replaced the static data modules with a SQLite-backed API and seed script.
+  - Added payments, payment detail, disputes, and payouts routes.
+  - Added a CSV export, tests, and intentionally planted defects for training use.
+
+A copy of the Apache License, Version 2.0 is included in LICENSE.md.

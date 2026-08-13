@@ -1,17 +1,35 @@
-# Build Battle: Sales Leaderboard
+# Build Battle: Repo Rescue
 
 **Time:** 30 minutes | **Everyone competes** | **All skills from today**
+
+You are a new engineer at **Northwind Payments**. Your team owns the merchant console: the internal tool support and ops staff use to look up a payment, refund it, and work the dispute queue.
+
+It is your first sprint. There is a ticket with your name on it, and a bug report nobody has picked up yet.
 
 ---
 
 ## The Rules
 
-1. This is a sales leaderboard dashboard with **bugs hiding in plain sight**
-2. There's an **open Issue** describing a feature to build
-3. You have 30 minutes to:
-   - Find and fix as many bugs as you can
-   - Build the requested feature
-   - Push a clean PR
+1. Work the ticket in [`docs/tickets/NWP-1042.md`](../docs/tickets/NWP-1042.md) from start to finish.
+2. The codebase has **bugs hiding in plain sight**. Some are described in [`NWP-1057`](../docs/tickets/NWP-1057.md). Others are not described anywhere.
+3. You have 30 minutes to build the feature, fix what you find, and push a clean PR.
+
+Pull the ticket into Claude Code instead of retyping it:
+
+```
+@docs/tickets/NWP-1042.md
+```
+
+## Setup
+
+```bash
+cd build-battle/merchant-console
+npm install
+npm run seed
+npm run dev
+```
+
+Everyone gets the same seeded data, so everyone gets the same bugs.
 
 ## Scoring
 
@@ -19,18 +37,19 @@ A Claude sub-agent reviews every PR automatically and scores on:
 
 | Weight | Category | What It Checks |
 |--------|----------|---------------|
-| 40% | **Feature** | Does the requested feature work correctly? |
+| 40% | **Ticket** | Does NWP-1042 meet its acceptance criteria? |
 | 30% | **Bugs Fixed** | How many of the planted bugs did you find and fix? |
-| 20% | **Code Quality** | Clean code, proper formatting, no new issues introduced |
-| 10% | **PR Description** | Clear explanation of what you changed and why |
+| 20% | **Code Quality** | Clean code, project conventions followed, no new issues introduced |
+| 10% | **PR Description** | Clear explanation of what changed and how you verified it |
 
 ## How to Submit
 
 ```bash
-# Make your changes
+git checkout -b NWP-1042-export-options
+# ...do the work...
 git add -A
-git commit -m "fix: [describe your changes]"
-git push origin main
+git commit -m "NWP-1042: add export options"
+git push -u origin NWP-1042-export-options
 # Open a PR — the reviewer runs automatically
 ```
 
@@ -38,13 +57,11 @@ You can push multiple times. Each push re-triggers the reviewer. Your highest sc
 
 ## Tips
 
-- Run `/ship-ready` before pushing — it catches some issues, but not all
-- Read the CLAUDE.md first — it tells you the project's conventions
-- The bugs range from obvious to subtle. Some are in the JS, some in the data, one is in the CSS.
-- Don't just fix bugs — make sure the feature works end-to-end
-
-## Feature Request
-
-> **Add a time-period filter** (This Week / This Month / This Quarter / All Time) that filters the leaderboard data and updates the stats cards. The filter should persist in the URL hash so sharing a link preserves the view.
+- **Read the notes on the ticket.** The team left three warnings there, and each one maps to a way people lose points.
+- Run `/ship-ready` before pushing. It catches some issues, not all.
+- Read `merchant-console/CLAUDE.md` first. Two conventions in it explain most of the bugs in this codebase.
+- The bugs range from obvious to subtle. Some are in the API, some in the UI, one is in the seed data.
+- Fixing a symptom is not fixing a bug. The grader checks whether the root cause is gone.
+- Write the PR description. It is worth more than any single bug fix.
 
 Good luck.

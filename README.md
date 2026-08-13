@@ -1,73 +1,70 @@
-# Claude Code Workshop
+# Claude Code Training
 
-**3 hours. 3 stations. 1 Build Battle.**
+**Repo Rescue** — a hands-on workshop where you take a real ticket through a real codebase with Claude Code, open a pull request, and get scored on it.
 
-A hands-on workshop where every attendee ships something real using Claude Code. Built by [Tenex](https://tenex.co) in partnership with Anthropic.
+Built by [Tenex](https://tenex.co) in partnership with Anthropic.
+
+> **Status:** the Northwind merchant console is mid-build. The base app and the tickets are in place; the API, seed data, and planted bugs are still landing.
 
 ---
 
+## The premise
+
+You are a new engineer at **Northwind Payments**, a fictional payments company. Your team owns the merchant console: the internal tool support and ops staff use to look up a payment, refund it, and work the dispute queue.
+
+It is your first sprint. NWP-1042 is assigned to you. NWP-1057 is sitting in triage, unloved, and three merchants are asking about it.
+
+Every merchant, cardholder, and amount in this repository is generated. Northwind Payments is not a real company.
+
 ## Prerequisites
 
-- [ ] **Claude Code** installed and authenticated (`claude` command works in your terminal)
-- [ ] **GitHub account** (for Build Battle PR submissions)
+- [ ] **Claude Code** installed and authenticated
+- [ ] **GitHub account**, for submitting your pull request
 - [ ] **Git** installed
-- [ ] A code editor (VS Code, Cursor, etc.) — optional, Claude Code runs in the terminal
-- [ ] Node.js 18+ — optional, only if you want a local dev server
+- [ ] **Node.js 20+**
+- [ ] A code editor — optional
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/tenex-workshop/claude-code-workshop.git
-cd claude-code-workshop
+git clone https://github.com/JJFromTenex/claude-code-training.git
+cd claude-code-training/build-battle/merchant-console
+npm install
+npm run seed
+npm run dev
 ```
 
-Then follow the station instructions in order.
+Then read your ticket, and pull it into Claude Code rather than retyping it:
 
----
+```
+@docs/tickets/NWP-1042.md
+```
 
-## Workshop Schedule
+## How this repo is used
 
-| Time | Block | What You Do |
-|------|-------|-------------|
-| 0:00–0:05 | **The Hook** | Connect Claude to Slack/Teams, ask it a real question |
-| 0:05–0:30 | **Foundation** | Watch demos of CLAUDE.md, Skills, MCP, Hooks, Sub-Agents |
-| 0:30–1:00 | **Station 1** | `cd station-1` — Hook a real repo (engineering) |
-| 1:00–1:30 | **Station 2** | `cd station-2` — Live data to forecast (analytics) |
-| 1:30–1:45 | **Break** | |
-| 1:45–2:15 | **Station 3** | `cd station-3` — Pipeline to outreach (sales/GTM) |
-| 2:15–2:45 | **Build Battle** | `cd build-battle` — Fork, fix, build, get scored |
-| 2:45–3:00 | **Close** | Leaderboard reveal + wrap-up |
+It is both where you get the work and where you hand it in.
 
-## Stations
+1. **Download.** Clone this repository, or fork it if you want somewhere of your own to push.
+2. **Take your ticket.** `docs/tickets/` holds tickets written the way they arrive on a sprint board: description, acceptance criteria, and notes from the team.
+3. **Do the work.** Branch with the ticket ID, for example `NWP-1042-export-options`.
+4. **Open a pull request** against this repository. The template asks what changed and how you verified it.
+5. **Get scored.** A Claude reviewer runs on every push to an open PR and comments with a breakdown. Push again and it re-scores. Your best run counts.
 
-### Station 1: Hook a Real Repo
-**Engineering-focused** — CLAUDE.md, Skills, Hooks
+## Layout
 
-Clone a dashboard app, explore its CLAUDE.md, build a skill, wire a hook. Take home a hooked repo with a reusable `/ship-ready` skill.
+| Path | What it is |
+|------|-----------|
+| `docs/tickets/` | The tickets you work |
+| `build-battle/` | The exercise brief, scoring, and the `/ship-ready` skill |
+| `build-battle/merchant-console/` | Northwind Payments, the application itself |
+| `.github/` | PR template and the grading workflow |
 
-### Station 2: Live Data to Forecast
-**All roles** — Chained Skills
-
-Build a `/fetch-data` skill, chain a `/forecast` skill on top, ship an HTML dashboard. Take home two composable skills and a shareable forecast.
-
-### Station 3: Pipeline to Outreach
-**Sales & GTM** — MCP Connectors + Skills
-
-Load a CRM pipeline, analyze your writing voice, build a `/outreach` skill that drafts personalized follow-ups. Take home an outreach workflow trained on your style.
-
-### Build Battle: Sales Leaderboard
-**Everyone competes** — Everything from the day
-
-Fork a buggy sales leaderboard. Find the planted bugs. Build the requested feature. Push a PR. A Claude sub-agent scores every submission live.
-
----
-
-## Foundation Concepts Reference
+## Concepts you will use
 
 | Concept | What It Is | Where You Use It |
 |---------|-----------|-----------------|
-| **CLAUDE.md** | Persistent project context that loads every session | Station 1, all stations |
-| **Skills** | Reusable slash commands (SKILL.md in `.claude/skills/`) | Station 1, 2, 3 |
-| **MCP Connectors** | Connect Claude to external tools (Slack, Gmail, Jira) | Station 3 |
-| **Hooks** | Shell commands that fire before/after Claude acts | Station 1 |
-| **Sub-Agents** | Independent Claude instances for delegated tasks | Build Battle |
+| **CLAUDE.md** | Persistent project context that loads every session | Before you write a line |
+| **Skills** | Reusable slash commands in `.claude/skills/` | `/ship-ready` before you push |
+| **Hooks** | Shell commands that fire before or after Claude acts | Blocking a push that fails the money tests |
+| **Sub-Agents** | Independent Claude instances for delegated work | Investigating NWP-1057 read-only |
+| **MCP Connectors** | Connect Claude to external tools | Driving the browser to verify your work |

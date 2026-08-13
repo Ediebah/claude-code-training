@@ -1,24 +1,23 @@
-# Build Battle: Sales Leaderboard
+# Build Battle: Repo Rescue
 
-## Code Style Rules
+The exercise wrapper. The application itself lives in `merchant-console/` and has its own CLAUDE.md with the codebase conventions — read that one before writing code.
 
-- Use semantic HTML elements
-- Keep functions under 30 lines — if it's longer, break it up
-- All user-facing numbers must be formatted with commas (e.g., $1,234,567)
-- Sort operations must be stable (preserve original order for equal values)
-- No `console.log` in committed code
-- Prefer `const` over `let`. Never use `var`
-- All functions need JSDoc comments
+## What you are doing here
 
-## Project Context
+Working ticket NWP-1042 end to end, in a codebase you did not write, under time pressure, with bugs in it. Submitted as a pull request and scored automatically.
 
-This is a sales leaderboard dashboard. It loads rep data from `data.json` and renders a leaderboard table with stat cards and a search bar.
+- Ticket: `docs/tickets/NWP-1042.md` at the repository root
+- Linked bug report: `docs/tickets/NWP-1057.md`
+- App: `merchant-console/`
 
-**Known issue:** There's an open GitHub Issue describing a feature to build. Check the Issues tab.
+## Workflow rules
 
-## File Overview
+- Branch from `main` using the ticket ID: `NWP-1042-export-options`
+- Commit subjects start with the ticket ID: `NWP-1042: add export options`
+- Read before you edit. The console already has a query builder, money helpers, and date helpers; a second implementation of any of them costs points
+- Do not edit the seed data to make a symptom disappear
+- Do not commit the generated SQLite file
 
-- `index.html` — Page structure
-- `styles.css` — All styles
-- `app.js` — Data loading, rendering, sorting, searching
-- `data.json` — Sales rep data
+## Definition of done
+
+A pull request that states what changed, how it was verified, and which acceptance criteria it meets.
