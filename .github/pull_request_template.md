@@ -1,6 +1,6 @@
 <!--
 Repo Rescue submission. The grader reads this description, so it is worth writing.
-Keep the ticket ID in the title, for example: NWP-1042: add export options
+Keep the ticket ID in the title, for example: NWP-101: add export options
 -->
 
 ## Ticket
@@ -13,10 +13,10 @@ Closes NWP-____
 
 ## How I verified it
 
-<!-- The commands you ran and what you saw. Tests, Playwright, a screenshot, a downloaded file. -->
+<!-- The commands you ran and what you saw. Paste the test summary line. Say what you clicked and what appeared. -->
 
-- [ ] Unit tests pass (`npm test`)
-- [ ] End-to-end test covers the new behavior
+- [ ] `npm test` passes
+- [ ] New behavior is covered by a test
 - [ ] Checked it in the browser
 
 ## Acceptance criteria

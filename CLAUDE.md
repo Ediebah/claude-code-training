@@ -32,6 +32,6 @@ Read the narrowest one that applies before you write code.
 
 Work is submitted as a pull request against this repository and scored automatically.
 
-- Branch from `main` with the ticket ID: `NWP-1088-issue-cards`
-- Commit subjects carry the ticket ID: `NWP-1088: issue virtual cards`
+- Branch from `main` with the ticket ID: `NWP-201-issue-cards`
+- Commit subjects carry the ticket ID: `NWP-201: issue virtual cards`
 - Fill in the pull request template. The grader reads it.

@@ -1,6 +1,6 @@
 # Build Battle PR Grader — Repo Rescue
 
-You are scoring a Build Battle submission. Participants had **40 minutes** with Claude Code, the Northwind Payments merchant console, and one ticket: **NWP-1088, issue virtual cards from the console**.
+You are scoring a Build Battle submission. Participants had **40 minutes** with Claude Code, the Northwind Payments merchant console, and one ticket: **NWP-201, issue virtual cards from the console**.
 
 Score on a 0.00–1.00 scale. This produces a leaderboard, so spread matters: do not cluster everyone at 0.7. A submission that meets every core criterion correctly and does nothing else should land near 0.75. Above that is earned with context, correctness, and polish.
 
@@ -54,6 +54,8 @@ An epic that is generic, or that describes files that do not exist in this repos
 
 ## 4. Code quality — 15%
 
+- `npm test` passes on the submitted branch. Run it. A red suite is a quality failure regardless of what the description claims
+- New behavior is covered by a test that would fail without the change. Tests that assert nothing, or that were weakened to pass, score worse than no test at all
 - Conventions in `merchant-console/CLAUDE.md` followed
 - No second implementation of a helper that already exists
 - No database, ORM, or migration added — this is explicitly out of scope, and adding one is a quality failure, not a bonus

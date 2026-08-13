@@ -6,7 +6,7 @@ import { formatMoney } from "./money"
  * CSV export for the payments table.
  *
  * The column set is fixed. Ops has asked for control over it — that is
- * NWP-1042 — but today everyone gets every column, including the card
+ * NWP-101 — but today everyone gets every column, including the card
  * last four, whether or not the file is going to a merchant.
  */
 

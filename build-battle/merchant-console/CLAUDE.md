@@ -18,7 +18,7 @@ No database, no seed step, no Docker.
 Seed data is JSON, loaded into a store module at boot. Route handlers read and write that store.
 
 - Writes last for the life of the dev server and vanish on restart. That is expected.
-- Persistence is tracked separately as NWP-1103. **Do not add a database, an ORM, or migrations.**
+- Persistence is tracked separately as NWP-203. **Do not add a database, an ORM, or migrations.**
 - If you need more seed data, add it to the JSON. Never edit seed data to make a failing case disappear.
 
 ## Where the rest of the context lives
@@ -30,7 +30,7 @@ This file loads every session, so it stays short. Detail that only matters once 
 | `money.md` | `src/lib/`, `src/app/api/`, `src/data/` |
 | `api-routes.md` | `src/app/api/` |
 | `cards.md` | anything card-related |
-| `components.md` | `src/components/`, `src/app/(main)/` |
+| `components.md` | `src/components/`, `src/app/` |
 
 ## Conventions
 
@@ -51,12 +51,12 @@ These four explain most of the code, and breaking them is how bugs get in here.
 
 | Path | What lives there |
 | --- | --- |
-| `src/app/(main)/` | Console routes: overview, payments, disputes, payouts, cards |
+| `src/app/` | Console routes: overview, payments, disputes, payouts. Cards is NWP-201 and does not exist yet |
 | `src/app/api/` | Route handlers |
 | `src/data/` | Seed JSON, the in-memory store, and types |
 | `src/components/` | Tremor-based primitives and the console's own components |
-| `src/lib/` | Money, date, and card helpers. Read these before touching an amount |
+| `src/lib/` | Money, date, and CSV helpers, each with a `.test.ts` beside it. Read these before touching an amount |
 
 ## Before you push
 
-Run `/ship-ready`. It checks the rules above, not just formatting.
+Run `npm test`, then `/ship-ready`. The skill checks the rules above, not just formatting.

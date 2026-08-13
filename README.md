@@ -12,7 +12,7 @@ Built by [Tenex](https://tenex.co) in partnership with Anthropic.
 
 You are a new engineer at **Northwind Payments**, a fictional payments company. Your team owns the merchant console: the internal tool support and ops staff use to look up a payment, refund it, and work the dispute queue.
 
-It is your first sprint. NWP-1042 is assigned to you. NWP-1057 is sitting in triage, unloved, and three merchants are asking about it.
+It is your first sprint. NWP-101 is assigned to you. NWP-102 is sitting in triage, unloved, and three merchants are asking about it.
 
 Every merchant, cardholder, and amount in this repository is generated. Northwind Payments is not a real company.
 
@@ -38,13 +38,13 @@ No database and no seed step. Data lives in memory and resets when you restart t
 Then read your ticket, and pull it into Claude Code rather than retyping it:
 
 ```
-@docs/tickets/NWP-1088.md
+@docs/tickets/NWP-201.md
 ```
 
 Then build the context before you build the feature:
 
 ```
-/epic docs/tickets/NWP-1088.md
+/epic docs/tickets/NWP-201.md
 ```
 
 ## How this repo is used
@@ -54,7 +54,7 @@ It is both where you get the work and where you hand it in.
 1. **Download.** Clone this repository, or fork it if you want somewhere of your own to push.
 2. **Take your ticket.** `docs/tickets/` holds tickets written the way they arrive on a sprint board: description, acceptance criteria, notes from the team, and an explicit out-of-scope list.
 3. **Build the context.** `/epic` turns the ticket into a plan that cites real files. This is the habit the workshop is teaching, and it is worth 10% of your Build Battle score.
-4. **Do the work.** Branch with the ticket ID, for example `NWP-1088-issue-cards`.
+4. **Do the work.** Branch with the ticket ID, for example `NWP-201-issue-cards`.
 5. **Open a pull request** against this repository. The template asks what changed and how you verified it.
 6. **Get scored.** A Claude reviewer runs on every push to an open PR and comments with a breakdown. Push again and it re-scores. Your best run counts.
 
@@ -72,9 +72,9 @@ It is both where you get the work and where you hand it in.
 
 | Ticket | What it is | Where it is used |
 |--------|-----------|-----------------|
-| [NWP-1088](docs/tickets/NWP-1088.md) | Issue virtual cards from the console | **Build Battle**, 40 minutes, graded |
-| [NWP-1042](docs/tickets/NWP-1042.md) | Payments export options | Guided practice, 10–15 minutes |
-| [NWP-1057](docs/tickets/NWP-1057.md) | Merchants say yesterday's totals are wrong | Investigation exercise |
+| [NWP-201](docs/tickets/NWP-201.md) | Issue virtual cards from the console | **Build Battle**, 40 minutes, graded |
+| [NWP-101](docs/tickets/NWP-101.md) | Payments export options | Guided practice, 10–15 minutes |
+| [NWP-102](docs/tickets/NWP-102.md) | Merchants say yesterday's totals are wrong | Investigation exercise |
 | [Backlog](docs/tickets/BACKLOG.md) | Referenced but not scheduled | Do not build these |
 
 ## What comes preloaded
@@ -97,6 +97,6 @@ No hooks are preinstalled. Adding one is a good use of your time if you finish e
 | **CLAUDE.md** | Persistent project context that loads every session | Before you write a line |
 | **Skills** | Reusable slash commands in `.claude/skills/` | `/epic`, then `/ship-ready`, then `/pr` |
 | **Plan mode** | Claude proposes an approach before it edits | Right after the epic |
-| **Sub-Agents** | Independent Claude instances with their own context and permissions | `bug-investigator` on NWP-1057 |
+| **Sub-Agents** | Independent Claude instances with their own context and permissions | `bug-investigator` on NWP-102 |
 | **Hooks** | Shell commands that fire before or after Claude acts | Yours to add |
 | **MCP Connectors** | Connect Claude to external tools | Driving the browser to verify your work |

@@ -7,7 +7,7 @@ Use this **before** writing code. A ticket says what someone wants. An epic says
 ## Usage
 
 ```
-/epic docs/tickets/NWP-1088.md
+/epic docs/tickets/NWP-201.md
 ```
 
 If no ticket is given, ask which one.

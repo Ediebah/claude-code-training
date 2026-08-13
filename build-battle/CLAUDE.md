@@ -4,17 +4,17 @@ The exercise wrapper. The application itself lives in `merchant-console/` and ha
 
 ## What you are doing here
 
-Taking ticket NWP-1088 end to end in a codebase you did not write, in 40 minutes, then submitting it as a pull request to be scored.
+Taking ticket NWP-201 end to end in a codebase you did not write, in 40 minutes, then submitting it as a pull request to be scored.
 
-- Ticket: `docs/tickets/NWP-1088.md` at the repository root
+- Ticket: `docs/tickets/NWP-201.md` at the repository root
 - Your plan goes in: `docs/epics/`
 - App: `merchant-console/` — read its CLAUDE.md before writing code
 
 ## The order that works
 
-1. `@docs/tickets/NWP-1088.md` — read it, including the out-of-scope list
-2. `/epic docs/tickets/NWP-1088.md` — build the context, review what it wrote
-3. `@docs/epics/NWP-1088-issue-cards.md` — load the plan, then plan mode, then build
+1. `@docs/tickets/NWP-201.md` — read it, including the out-of-scope list
+2. `/epic docs/tickets/NWP-201.md` — build the context, review what it wrote
+3. `@docs/epics/NWP-201-issue-cards.md` — load the plan, then plan mode, then build
 4. `/ship-ready` — check yourself
 5. `/pr` — write the description
 6. Commit, push, open the pull request
@@ -27,8 +27,8 @@ Taking ticket NWP-1088 end to end in a codebase you did not write, in 40 minutes
 
 ## Workflow rules
 
-- Branch from `main` using the ticket ID: `NWP-1088-issue-cards`
-- Commit subjects start with the ticket ID: `NWP-1088: issue virtual cards`
+- Branch from `main` using the ticket ID: `NWP-201-issue-cards`
+- Commit subjects start with the ticket ID: `NWP-201: issue virtual cards`
 - Read before you edit. The console already has money helpers, date helpers, and a query builder; a second implementation of any of them costs points
 - Never edit seed data to make a failing case disappear
 - No database, no ORM, no migrations. The store is in memory on purpose and persistence is a different ticket

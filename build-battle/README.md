@@ -10,12 +10,12 @@ Ops is tired of asking the platform team to create cards by hand. That request i
 
 ## Your ticket
 
-**[NWP-1088 — Issue virtual cards from the console](../docs/tickets/NWP-1088.md)**
+**[NWP-201 — Issue virtual cards from the console](../docs/tickets/NWP-201.md)**
 
 Pull it into Claude Code rather than retyping it:
 
 ```
-@docs/tickets/NWP-1088.md
+@docs/tickets/NWP-201.md
 ```
 
 Read the whole thing before you start, including **Out of scope**. Two of the four items in that list are where people lose the most time.
@@ -34,9 +34,9 @@ No database. Data lives in memory, seeded from JSON, and resets when you restart
 
 Do it in this order. The first two steps take five minutes and they are why the last one goes fast.
 
-1. **Read the ticket.** `@docs/tickets/NWP-1088.md`
-2. **Write the epic.** `/epic docs/tickets/NWP-1088.md` — Claude reads the actual codebase, asks you what is ambiguous, and writes a plan to `docs/epics/`. Review it and fix what is wrong.
-3. **Build with it loaded.** `@docs/epics/NWP-1088-issue-cards.md`, then plan mode, then go.
+1. **Read the ticket.** `@docs/tickets/NWP-201.md`
+2. **Write the epic.** `/epic docs/tickets/NWP-201.md` — Claude reads the actual codebase, asks you what is ambiguous, and writes a plan to `docs/epics/`. Review it and fix what is wrong.
+3. **Build with it loaded.** `@docs/epics/NWP-201-issue-cards.md`, then plan mode, then go.
 4. **Check yourself.** `/ship-ready`
 5. **Write the PR.** `/pr`
 6. **Ship it.** Commit, push, open the pull request.
@@ -52,7 +52,7 @@ Skipping step 2 is the most common way to lose this. It is also worth 10% of you
 | `/ship-ready` | Pre-push check: money math, UTC handling, duplicate logic, unvalidated input |
 | `bug-investigator` | A read-only subagent. Hand it a bug report and it returns a root-cause analysis with file paths. It cannot edit anything, which is exactly why you can trust the report |
 
-Try the subagent on [NWP-1057](../docs/tickets/NWP-1057.md) if you finish early. Nothing in this repository stops you from adding your own skills, subagents, or hooks either — a hook that blocks a push when tests fail is a good ninety seconds of work.
+Try the subagent on [NWP-102](../docs/tickets/NWP-102.md) if you finish early. Nothing in this repository stops you from adding your own skills, subagents, or hooks either — a hook that blocks a push when tests fail is a good ninety seconds of work.
 
 ## How you are scored
 
@@ -74,11 +74,11 @@ Ties break toward the submission with tests, then working keyboard and screen-re
 ## How to submit
 
 ```bash
-git checkout -b NWP-1088-issue-cards
+git checkout -b NWP-201-issue-cards
 # ...build...
 git add -A
-git commit -m "NWP-1088: issue virtual cards"
-git push -u origin NWP-1088-issue-cards
+git commit -m "NWP-201: issue virtual cards"
+git push -u origin NWP-201-issue-cards
 # Open a PR — the reviewer runs automatically
 ```
 

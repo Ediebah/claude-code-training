@@ -6,7 +6,7 @@ import { NextRequest } from "next/server"
  * Exports the payments table as CSV.
  *
  * Honors the active filters and reuses the query builder, but the column set
- * and the scope are fixed. Giving ops control over both is NWP-1042.
+ * and the scope are fixed. Giving ops control over both is NWP-101.
  */
 export function GET(request: NextRequest) {
   const filters = parseFilters(request.nextUrl.searchParams)

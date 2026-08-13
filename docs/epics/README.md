@@ -18,7 +18,7 @@ An epic is the fix, and it costs about five minutes:
 ## How to write one
 
 ```
-/epic docs/tickets/NWP-1088.md
+/epic docs/tickets/NWP-201.md
 ```
 
 The skill reads the ticket, goes and reads the actual code, asks you about anything genuinely ambiguous, and writes the epic here. Review it. Fix what is wrong — it will get something wrong, and catching that now is the point.
@@ -26,7 +26,7 @@ The skill reads the ticket, goes and reads the actual code, asks you about anyth
 Then build with it loaded:
 
 ```
-@docs/epics/NWP-1088-issue-cards.md
+@docs/epics/NWP-201-issue-cards.md
 ```
 
 ## Rules
