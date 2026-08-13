@@ -7,8 +7,10 @@ Apache License, Version 2.0.
 
 Changes made by Tenex:
   - Rebranded the dashboard as a fictional payments merchant console.
-  - Replaced the static data modules with a SQLite-backed API and seed script.
-  - Added payments, payment detail, disputes, and payouts routes.
-  - Added a CSV export, tests, and intentionally planted defects for training use.
+  - Replaced the static data modules with an in-memory store and JSON seed data,
+    served through Next.js route handlers.
+  - Added payments, payment detail, disputes, payouts, and cards routes.
+  - Added a CSV export, virtual card issuing, tests, and intentionally planted
+    defects for training use.
 
 A copy of the Apache License, Version 2.0 is included in LICENSE.md.

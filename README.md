@@ -30,14 +30,21 @@ Every merchant, cardholder, and amount in this repository is generated. Northwin
 git clone https://github.com/JJFromTenex/claude-code-training.git
 cd claude-code-training/build-battle/merchant-console
 npm install
-npm run seed
 npm run dev
 ```
+
+No database and no seed step. Data lives in memory and resets when you restart the dev server.
 
 Then read your ticket, and pull it into Claude Code rather than retyping it:
 
 ```
-@docs/tickets/NWP-1042.md
+@docs/tickets/NWP-1088.md
+```
+
+Then build the context before you build the feature:
+
+```
+/epic docs/tickets/NWP-1088.md
 ```
 
 ## How this repo is used
@@ -45,26 +52,37 @@ Then read your ticket, and pull it into Claude Code rather than retyping it:
 It is both where you get the work and where you hand it in.
 
 1. **Download.** Clone this repository, or fork it if you want somewhere of your own to push.
-2. **Take your ticket.** `docs/tickets/` holds tickets written the way they arrive on a sprint board: description, acceptance criteria, and notes from the team.
-3. **Do the work.** Branch with the ticket ID, for example `NWP-1042-export-options`.
-4. **Open a pull request** against this repository. The template asks what changed and how you verified it.
-5. **Get scored.** A Claude reviewer runs on every push to an open PR and comments with a breakdown. Push again and it re-scores. Your best run counts.
+2. **Take your ticket.** `docs/tickets/` holds tickets written the way they arrive on a sprint board: description, acceptance criteria, notes from the team, and an explicit out-of-scope list.
+3. **Build the context.** `/epic` turns the ticket into a plan that cites real files. This is the habit the workshop is teaching, and it is worth 10% of your Build Battle score.
+4. **Do the work.** Branch with the ticket ID, for example `NWP-1088-issue-cards`.
+5. **Open a pull request** against this repository. The template asks what changed and how you verified it.
+6. **Get scored.** A Claude reviewer runs on every push to an open PR and comments with a breakdown. Push again and it re-scores. Your best run counts.
 
 ## Layout
 
 | Path | What it is |
 |------|-----------|
 | `docs/tickets/` | The tickets you work |
-| `build-battle/` | The exercise brief, scoring, and the `/ship-ready` skill |
+| `docs/epics/` | Where your plans go, and the template they follow |
+| `build-battle/` | The exercise brief, scoring, and the `/epic` and `/ship-ready` skills |
 | `build-battle/merchant-console/` | Northwind Payments, the application itself |
 | `.github/` | PR template and the grading workflow |
+
+## The tickets
+
+| Ticket | What it is | Where it is used |
+|--------|-----------|-----------------|
+| [NWP-1088](docs/tickets/NWP-1088.md) | Issue virtual cards from the console | **Build Battle**, 40 minutes, graded |
+| [NWP-1042](docs/tickets/NWP-1042.md) | Payments export options | Guided practice, 10–15 minutes |
+| [NWP-1057](docs/tickets/NWP-1057.md) | Merchants say yesterday's totals are wrong | Investigation exercise |
 
 ## Concepts you will use
 
 | Concept | What It Is | Where You Use It |
 |---------|-----------|-----------------|
 | **CLAUDE.md** | Persistent project context that loads every session | Before you write a line |
-| **Skills** | Reusable slash commands in `.claude/skills/` | `/ship-ready` before you push |
-| **Hooks** | Shell commands that fire before or after Claude acts | Blocking a push that fails the money tests |
+| **Skills** | Reusable slash commands in `.claude/skills/` | `/epic` before you build, `/ship-ready` before you push |
+| **Plan mode** | Claude proposes an approach before it edits | Right after the epic |
+| **Hooks** | Shell commands that fire before or after Claude acts | Blocking a push that fails the tests |
 | **Sub-Agents** | Independent Claude instances for delegated work | Investigating NWP-1057 read-only |
 | **MCP Connectors** | Connect Claude to external tools | Driving the browser to verify your work |

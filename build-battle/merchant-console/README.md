@@ -8,30 +8,31 @@ The internal tool Northwind's support and ops teams use to look up a payment, re
 
 ```bash
 npm install
-npm run seed
 npm run dev
 ```
 
-Then open http://localhost:3000.
+Then open http://localhost:3000. No database, no seed step, no Docker.
 
-`npm run seed` builds a local SQLite file from a fixed seed, so everyone in the room gets identical data and identical bugs. Delete it and re-run any time you want a clean slate.
+Data lives in an in-memory store loaded from JSON at boot. Anything you create lasts for the life of the dev server and resets on restart. That is deliberate — see [`CLAUDE.md`](./CLAUDE.md).
 
 ## The rules of this codebase
 
-Two conventions explain most of the code, and violating either one is how the bugs in here got written:
+Read [`CLAUDE.md`](./CLAUDE.md) before writing code. The short version:
 
 1. **Money is integer minor units.** Cents, not dollars. Never a float. Format once, at the edge, next to its currency.
 2. **Storage and bucketing are UTC.** Display converts to the merchant's timezone. Nothing else does.
+3. **One query builder.** Payment filtering goes through the one behind `GET /api/payments`.
+4. **Validate on the server.** Nothing that arrives from the client is trusted.
 
 ## Layout
 
 | Path | What lives there |
 | --- | --- |
-| `src/app/(main)/` | The console routes: overview, payments, disputes, payouts |
+| `src/app/(main)/` | The console routes: overview, payments, disputes, payouts, cards |
 | `src/app/api/` | Route handlers. The query builder behind `GET /api/payments` is the one to reuse |
 | `src/components/` | Tremor-based UI primitives and the console's own components |
-| `src/data/` | Schema, seed generator, and database access |
-| `src/lib/` | Money and date helpers. Read these before touching an amount |
+| `src/data/` | Seed JSON, the in-memory store, and types |
+| `src/lib/` | Money, date, and card helpers. Read these before touching an amount |
 
 ## Your ticket
 

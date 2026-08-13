@@ -4,19 +4,27 @@ The exercise wrapper. The application itself lives in `merchant-console/` and ha
 
 ## What you are doing here
 
-Working ticket NWP-1042 end to end, in a codebase you did not write, under time pressure, with bugs in it. Submitted as a pull request and scored automatically.
+Taking ticket NWP-1088 end to end in a codebase you did not write, in 40 minutes, then submitting it as a pull request to be scored.
 
-- Ticket: `docs/tickets/NWP-1042.md` at the repository root
-- Linked bug report: `docs/tickets/NWP-1057.md`
-- App: `merchant-console/`
+- Ticket: `docs/tickets/NWP-1088.md` at the repository root
+- Your plan goes in: `docs/epics/`
+- App: `merchant-console/` — read its CLAUDE.md before writing code
+
+## The order that works
+
+1. `@docs/tickets/NWP-1088.md` — read it, including the out-of-scope list
+2. `/epic docs/tickets/NWP-1088.md` — build the context, review what it wrote
+3. `@docs/epics/NWP-1088-issue-cards.md` — load the plan, then plan mode, then build
+4. `/ship-ready` — check yourself
+5. Commit, push, open the PR
 
 ## Workflow rules
 
-- Branch from `main` using the ticket ID: `NWP-1042-export-options`
-- Commit subjects start with the ticket ID: `NWP-1042: add export options`
-- Read before you edit. The console already has a query builder, money helpers, and date helpers; a second implementation of any of them costs points
-- Do not edit the seed data to make a symptom disappear
-- Do not commit the generated SQLite file
+- Branch from `main` using the ticket ID: `NWP-1088-issue-cards`
+- Commit subjects start with the ticket ID: `NWP-1088: issue virtual cards`
+- Read before you edit. The console already has money helpers, date helpers, and a query builder; a second implementation of any of them costs points
+- Never edit seed data to make a failing case disappear
+- No database, no ORM, no migrations. The store is in memory on purpose and persistence is a different ticket
 
 ## Definition of done
 
