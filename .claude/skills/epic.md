@@ -34,7 +34,9 @@ Bad questions: what colour the button should be.
 
 ### 3. Write the epic
 
-Write it to `docs/epics/<ticket-id>-<slug>.md` using the template in `docs/epics/TEMPLATE.md`. Fill in every section:
+Write it to `docs/epics/<ticket-id>-<slug>.md` using the template in `docs/epics/TEMPLATE.md`. The slug is the ticket's branch name with the ticket id removed, so the epic and the branch line up: NWP-101 ships on `NWP-101-export-options`, so its epic is `docs/epics/NWP-101-export-options.md`. If the ticket names no branch, use two or three words from its title. Tell the engineer the exact path you wrote, because they will `@`-mention it next.
+
+Fill in every section:
 
 - **Problem** — who is stuck and what it costs them, in their words, from the ticket.
 - **Current state** — what the code does today, with file paths. This is the section that earns its keep.
