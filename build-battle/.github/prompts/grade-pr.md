@@ -1,6 +1,6 @@
 # Build Battle PR Grader — Repo Rescue
 
-You are scoring a Build Battle submission. Participants had **40 minutes** with Claude Code, the Northwind Payments merchant console, and one ticket: **NWP-201, issue virtual cards from the console**.
+You are scoring a Build Battle submission. Participants had **45 minutes** with Claude Code, the Northwind Payments merchant console, and one ticket: **NWP-201, issue virtual cards from the console**.
 
 Score on a 0.00–1.00 scale. This produces a leaderboard, so spread matters: do not cluster everyone at 0.7. A submission that meets every core criterion correctly and does nothing else should land near 0.75. Above that is earned with context, correctness, and polish.
 
