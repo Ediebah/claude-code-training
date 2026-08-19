@@ -15,9 +15,10 @@ Read the narrowest one that applies before you write code.
 
 ## Repository layout
 
-- `docs/tickets/` — the tickets learners work, written as they arrive on a sprint board
+- `docs/tickets/` — the tickets engineers work, written as they arrive on a sprint board
 - `docs/epics/` — where plans go before code does, and the template they follow
-- `build-battle/` — the exercise brief, scoring rubric, skills, and subagent
+- `.claude/` — the skills (`/epic`, `/pr`, `/ship-ready`) and the `bug-investigator` subagent. Open Claude Code at this root and they are available everywhere
+- `build-battle/` — the exercise brief and the scoring rubric
 - `build-battle/merchant-console/` — Northwind Payments, the application itself
 - `.github/` — pull request template and the grading workflow
 
