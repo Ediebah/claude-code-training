@@ -21,14 +21,13 @@ export function dailyVolume(days = 30): DailyVolume[] {
   )
 
   for (const payment of store.payments) {
-    // BUG (NWP-102 planted): buckets by the server's local calendar date
-    // rather than the UTC date the record was stored under.
+    // Bucket by calendar date.
     const key = new Date(payment.createdAt).toLocaleDateString("en-CA")
     const bucket = buckets.get(key)
     if (!bucket) continue
 
     if (payment.status === "captured") {
-      // BUG (NWP-102 planted): float accumulation, then rounded on read.
+      // Accumulate in major units for readability; round when reporting.
       bucket.captured += payment.amount / 100
     }
     if (payment.status === "refunded") {
@@ -50,7 +49,7 @@ export function headlineMetrics() {
   const captured = store.payments.filter((p) => p.status === "captured")
   const refunded = store.payments.filter((p) => p.status === "refunded")
 
-  // BUG (NWP-102 planted): refunds added to gross volume instead of subtracted.
+  // Gross volume is everything that moved through the platform.
   const grossVolume =
     captured.reduce((sum, p) => sum + p.amount, 0) +
     refunded.reduce((sum, p) => sum + p.amount, 0)
