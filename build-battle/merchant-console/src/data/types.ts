@@ -71,6 +71,45 @@ export interface Payout {
   paymentIds: string[]
 }
 
+export type CardStatus = "active" | "frozen" | "cancelled"
+
+export interface Card {
+  id: string
+  nickname: string
+  merchant: string
+  /** Last four digits only. The full number is never stored. */
+  last4: string
+  /** Integer minor units. */
+  limit: number
+  /** Integer minor units. Starts at 0. */
+  spend: number
+  currency: Currency
+  status: CardStatus
+  /** ISO 8601, always UTC, set by the server at issuance. */
+  createdAt: string
+}
+
+export interface IssueCardInput {
+  nickname: string
+  merchant: string
+  limit: number
+  currency: Currency
+}
+
+export type IssueCardFieldErrors = Partial<
+  Record<keyof IssueCardInput, string>
+>
+
+/**
+ * The transient result of issuing a card. `fullNumber` exists only in this
+ * type and only for the length of the issuance response — it is never part
+ * of `Card` and never re-derivable from the store.
+ */
+export interface IssuedCard {
+  card: Card
+  fullNumber: string
+}
+
 export interface PaymentFilters {
   status?: PaymentStatus | "all"
   merchantId?: string

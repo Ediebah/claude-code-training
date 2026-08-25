@@ -42,6 +42,22 @@ export function sumMinorUnits(amounts: number[]): number {
   return amounts.reduce((total, amount) => total + amount, 0)
 }
 
+/**
+ * Utilization of a limit, as a 0-100 integer percentage. Both arguments are
+ * minor units in the same currency. A non-positive limit yields 0 rather
+ * than dividing, so malformed data cannot produce Infinity or NaN.
+ */
+export function utilizationPercent(spend: number, limit: number): number {
+  if (limit <= 0) return 0
+  return Math.min(100, Math.max(0, Math.round((spend / limit) * 100)))
+}
+
+/** True past 80% utilization, the point the console flags a card as amber. */
+export function isNearLimit(spend: number, limit: number): boolean {
+  if (limit <= 0) return false
+  return spend / limit > 0.8
+}
+
 /** Parse user input like "250" or "250.00" into minor units. Boundary only. */
 export function parseAmountToMinorUnits(input: string): number | null {
   const trimmed = input.trim().replace(/[, ]/g, "")

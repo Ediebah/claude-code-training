@@ -1,6 +1,6 @@
 import { generate } from "./generate"
 import { merchants } from "./merchants"
-import { Dispute, Payment, Payout, Refund } from "./types"
+import { Card, Dispute, Payment, Payout, Refund } from "./types"
 
 /**
  * In-memory store.
@@ -19,6 +19,9 @@ interface Store {
   refunds: Refund[]
   disputes: Dispute[]
   payouts: Payout[]
+  cards: Card[]
+  /** Lives here, not in a module variable, so dev-server reloads cannot reset it and collide ids. */
+  cardSeq: number
 }
 
 declare global {
@@ -28,7 +31,16 @@ declare global {
 
 function createStore(): Store {
   const { payments, refunds, disputes, payouts } = generate()
-  return { merchants, payments, refunds, disputes, payouts }
+  // Cards are issued at runtime only; nothing is seeded.
+  return {
+    merchants,
+    payments,
+    refunds,
+    disputes,
+    payouts,
+    cards: [],
+    cardSeq: 0,
+  }
 }
 
 export const store: Store = globalThis.__northwindStore ?? createStore()

@@ -2,8 +2,10 @@ import { describe, expect, it } from "vitest"
 import {
   formatMoney,
   formatMoneyCompact,
+  isNearLimit,
   parseAmountToMinorUnits,
   sumMinorUnits,
+  utilizationPercent,
 } from "./money"
 
 /**
@@ -58,6 +60,39 @@ describe("sumMinorUnits", () => {
 
   it("returns zero for an empty list", () => {
     expect(sumMinorUnits([])).toBe(0)
+  })
+})
+
+describe("utilizationPercent", () => {
+  it("computes a whole-percent utilization from minor units", () => {
+    expect(utilizationPercent(0, 10000)).toBe(0)
+    expect(utilizationPercent(5000, 10000)).toBe(50)
+    expect(utilizationPercent(10000, 10000)).toBe(100)
+  })
+
+  it("clamps rather than exceeding 100", () => {
+    expect(utilizationPercent(20000, 10000)).toBe(100)
+  })
+
+  it("returns 0 for a non-positive limit instead of dividing", () => {
+    expect(utilizationPercent(5000, 0)).toBe(0)
+    expect(utilizationPercent(5000, -1)).toBe(0)
+  })
+})
+
+describe("isNearLimit", () => {
+  it("is false at and below 80 percent", () => {
+    expect(isNearLimit(8000, 10000)).toBe(false)
+    expect(isNearLimit(7999, 10000)).toBe(false)
+  })
+
+  it("is true strictly above 80 percent", () => {
+    expect(isNearLimit(8001, 10000)).toBe(true)
+    expect(isNearLimit(10000, 10000)).toBe(true)
+  })
+
+  it("is false for a non-positive limit", () => {
+    expect(isNearLimit(5000, 0)).toBe(false)
   })
 })
 
