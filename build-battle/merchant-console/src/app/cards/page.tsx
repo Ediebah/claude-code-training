@@ -146,7 +146,9 @@ export default function CardsPage() {
                   <TableRow key={i}>
                     {Array.from({ length: 7 }).map((__, j) => (
                       <TableCell key={j}>
-                        <Skeleton className="h-4 w-full max-w-32" />
+                        {/* Skeleton's own bg-muted is not a token in this
+                            Tailwind config, so the shade is set here. */}
+                        <Skeleton className="h-4 w-full max-w-32 bg-gray-200 dark:bg-gray-800" />
                       </TableCell>
                     ))}
                   </TableRow>
@@ -209,6 +211,9 @@ export default function CardsPage() {
                       variant="secondary"
                       disabled={pendingId === card.id}
                       onClick={() => toggleFreeze(card)}
+                      aria-label={`${
+                        card.status === "active" ? "Freeze" : "Unfreeze"
+                      } ${card.nickname}`}
                     >
                       {pendingId === card.id
                         ? "Updating…"
